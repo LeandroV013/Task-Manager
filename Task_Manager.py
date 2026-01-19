@@ -23,3 +23,4 @@ def deletar_tarefa():
 
 def menu():
     print('Mostrar opções e criar funções, nada além disso') 
+    
