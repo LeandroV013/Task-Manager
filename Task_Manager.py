@@ -26,23 +26,28 @@ def listar_tarefas(): # Adicionar enumerate
         print(tarefas)
 
 
-def atualizar_tarefa():  # TRATAR ERRO DE STRING,CASO O USUÁRIO NÃO COLOQUE O NÚMERO, O CÓDIGO QUEBRA E VAI DAR ERRO DE ENTRADA
+def atualizar_tarefa():  
     if not tarefas:
-         print('Você não tem nenhuma tarefa.')
-    else:
-        print('Suas tarefas: ')
-        for i, tarefa in enumerate(tarefas, start=1):
-            print(f'{i}, {tarefa}')
+        print('Você não tem nenhuma tarefa.')
+        return
         
-        indice = int(input('Digite o número da tarefa que deseja editar: '))
-        
+    print('Suas tarefas: ')
+    for i, tarefa in enumerate(tarefas, start=1):
+        print(f'{i}, {tarefa}')
+
+    try:
+        indice = int(input('Digite o número da tarefa que deseja editar: ')) 
+
         if indice < 1 or indice > len(tarefas):
             print('Número inválido.')
+            return 
         else:
             nova_tarefa = input('Digite uma nova tarefa: ')
             tarefas[indice - 1] = nova_tarefa
             print('Tarefa atualizada com sucesso!')
-
+            
+    except ValueError:
+        print('Entrada inválida. Digite um número.')
 
 def deletar_tarefa(): # DELETAR MAIS DE UMA TAREFA POR VEZ QUEBRA O CÓDIGO. COLOCAR OPÇÃO DE DELETAR MAIS DE UM OU DELETAR TUDO.
     if not tarefas:
